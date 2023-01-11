@@ -17,18 +17,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         title: const Text('DeliMeal'),
       ),
       body: GridView(
+        padding: const EdgeInsets.all(25),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+        ),
         children: dummyCategory
             .map(
               (catData) =>
                   CategoryItem(title: catData.title, color: catData.color),
             )
             .toList(),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-        ),
       ),
     );
   }
