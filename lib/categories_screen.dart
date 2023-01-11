@@ -26,8 +26,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         ),
         children: dummyCategory
             .map(
-              (catData) =>
-                  CategoryItem(title: catData.title, color: catData.color),
+              (catData) => CategoryItem(
+                title: catData.title,
+                color: catData.color,
+                id: catData.id,
+              ),
             )
             .toList(),
       ),
