@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meal_app/screens/categories_screen.dart';
 import 'package:meal_app/screens/category_meals_screen.dart';
 import 'package:meal_app/screens/meal_details.dart';
+import 'package:meal_app/screens/tabs_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -27,10 +28,11 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'RobotoCondensed',
               ),
             ),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink)
-            .copyWith(secondary: Colors.amber),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.pink,
+        ).copyWith(secondary: Colors.amber),
       ),
-      home: const CategoriesScreen(),
+      home: const TabsScreen(),
       routes: {
         CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (context) => MealDetailScreen(),

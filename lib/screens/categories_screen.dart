@@ -12,28 +12,23 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('DeliMeal'),
+    return GridView(
+      padding: const EdgeInsets.all(25),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
+        childAspectRatio: 3 / 2,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
       ),
-      body: GridView(
-        padding: const EdgeInsets.all(25),
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-        ),
-        children: dummyCategory
-            .map(
-              (catData) => CategoryItem(
-                title: catData.title,
-                color: catData.color,
-                id: catData.id,
-              ),
-            )
-            .toList(),
-      ),
+      children: dummyCategory
+          .map(
+            (catData) => CategoryItem(
+              title: catData.title,
+              color: catData.color,
+              id: catData.id,
+            ),
+          )
+          .toList(),
     );
   }
 }
