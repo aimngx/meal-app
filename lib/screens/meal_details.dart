@@ -40,64 +40,74 @@ class MealDetailScreen extends StatelessWidget {
       (meal) => meal.id == mealId,
     );
     return Scaffold(
-        appBar: AppBar(
-          title: Text('${selectedMeal.title}'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              //for image
-              Container(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(
-                  selectedMeal.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+      appBar: AppBar(
+        title: Text('${selectedMeal.title}'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            //for image
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                selectedMeal.imageUrl,
+                fit: BoxFit.cover,
               ),
-              buildSectionTitle('Ingredients', context),
-              buildContainer(
-                ListView.builder(
-                  itemCount: selectedMeal.ingredients.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      color: Theme.of(context).colorScheme.secondary,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 10),
-                        child: Text(selectedMeal.ingredients[index]),
+            ),
+            buildSectionTitle('Ingredients', context),
+            buildContainer(
+              ListView.builder(
+                itemCount: selectedMeal.ingredients.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    color: Theme.of(context).colorScheme.secondary,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      child: Text(selectedMeal.ingredients[index]),
+                    ),
+                  );
+                },
+              ),
+            ),
+            buildSectionTitle('Steps', context),
+            buildContainer(
+              ListView.builder(
+                itemCount: selectedMeal.steps.length,
+                itemBuilder: ((context, index) {
+                  return Column(
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Text(
+                            '# ${(index + 1)}',
+                          ),
+                        ),
+                        title: Text(
+                          selectedMeal.steps[index],
+                        ),
                       ),
-                    );
-                  },
-                ),
+                      Divider(
+                        color: Colors.black87,
+                      ),
+                    ],
+                  );
+                }),
               ),
-              buildSectionTitle('Steps', context),
-              buildContainer(
-                ListView.builder(
-                  itemCount: selectedMeal.steps.length,
-                  itemBuilder: ((context, index) {
-                    return Column(
-                      children: [
-                        ListTile(
-                          leading: CircleAvatar(
-                            child: Text(
-                              '# ${(index + 1)}',
-                            ),
-                          ),
-                          title: Text(
-                            selectedMeal.steps[index],
-                          ),
-                        ),
-                        Divider(
-                          color: Colors.black87,
-                        ),
-                      ],
-                    );
-                  }),
-                ),
-              ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (() {
+          Navigator.of(context).pop(mealId);
+        }),
+        child: Icon(
+          Icons.delete,
+          color: Colors.black,
+        ),
+      ),
+    );
   }
 }
